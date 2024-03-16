@@ -1,0 +1,51 @@
+Implementare tema:
+Am deschis un socket catre server si generez comenzi intr-un while pana la comanda "exit".
+Daca o comanda este "exit" inchid socketul si ies din program. Daca o comanda este invalida afisez un mesaj corespunzator.
+Pentru fiecare comanda corecta si diferita de "exit" deschid o conexiune noua cu serverul,
+creez un mesaj pentru server si il trimit, apoi astept raspunsul de la server, il parsez si il afisez.
+Parsarea se realizeaza cu ajutorul bibliotecii json.hpp (folosita in c++ pentru a manipula json-uri, luata din documentatie).
+
+Comenzile sunt:
+
+- "register" - inregistreaza un user nou
+             - cere un username si o parola
+             Erori tratate: - username deja existent
+                            - deja logat in alt cont
+                            - username-ul sau parola contin spatiu sau sunt goale
+-  "login"   - logheaza un user
+             - cere un username si o parola
+             Erori tratate: - deja logat in alt cont
+                            - username-ul sau parola contin spatiu sau sunt goale
+                            - username sau parola gresite
+- "enter_library" - intra in biblioteca
+                  - cere un token
+             Erori tratate: - nu este logat
+                            - deja in biblioteca
+- "get_books" - afiseaza toate cartile din biblioteca
+              - daca bilbioteca este goala afiseaza un mesaj corespunzator
+             Erori tratate: - nu este logat
+                            - nu este in biblioteca
+- "get_book"  - afiseaza o carte din biblioteca
+              - cere un id
+             Erori tratate: - nu este logat
+                            - nu este in biblioteca
+                            - id-ul nu este valid
+                            - id-ul este gol
+                            - nu exista cartea cu id-ul respectiv
+- "add_book"  - adauga o carte in biblioteca
+                - cere un titlu, un autor, gen, o publicatie si numarul de pagini
+                 Erori tratate: - nu este logat
+                                - nu este in biblioteca
+                                - numarul de pagini nu este scris in cifre
+                                - titlul, autorul, genul, publicatia sau numarul de pagini sunt goale
+- "delete_book" - sterge o carte din biblioteca
+                - cere un id
+                 Erori tratate: - nu este logat
+                                - nu este in biblioteca
+                                - id-ul nu este valid
+                                - id-ul este gol
+                                - nu exista cartea cu id-ul respectiv
+- "logout" - delogheaza un user
+           - cookie si token-ul devin invalide
+                 Erori tratate: - nu este logat
+
